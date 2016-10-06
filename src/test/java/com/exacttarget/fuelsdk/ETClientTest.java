@@ -34,14 +34,19 @@
 
 package com.exacttarget.fuelsdk;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
 import org.junit.Assume;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.UUID;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -55,6 +60,38 @@ public class ETClientTest {
     }
 
     @Test
+    public void testSmartlingFlow() throws ETSdkException
+    {
+        ETClient client = new ETClient();
+        ETFilter filter = new ETFilter();
+        List<ETEmail> emails = client.retrieveObjects(ETEmail.class, filter);
+        assertNotNull(emails);
+        ETExpression expression = new ETExpression();
+        expression.setProperty("name");
+        expression.setOperator(ETExpression.Operator.EQUALS);
+        expression.setValue("Template test");
+        filter.setExpression(expression);
+        ETEmail email = client.retrieveObject(ETEmail.class, filter);
+        email.getContentAreas().forEach(etContentArea -> etContentArea.setContent("X_0_o_X"));
+
+        String externalKey = UUID.randomUUID().toString();
+        email.setKey(externalKey);
+        ETResponse<ETEmail> response =  client.update(email);
+        if (response.getStatus() != ETResult.Status.OK) {
+            System.out.println(email);
+        }
+        expression = new ETExpression();
+        expression.setProperty("key");
+        expression.setOperator(ETExpression.Operator.EQUALS);
+        expression.setValue(externalKey);
+        filter.setExpression(expression);
+        filter.addProperty("key");
+        email = client.retrieveObject(ETEmail.class, filter);
+        assertEquals(email.getKey(), externalKey);
+    }
+
+    @Test
+    @Ignore
     @SuppressWarnings("deprecation")
     public void testBackwardCompatibility1()
         throws ETSdkException

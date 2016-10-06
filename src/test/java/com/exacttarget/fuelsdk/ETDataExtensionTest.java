@@ -34,21 +34,23 @@
 
 package com.exacttarget.fuelsdk;
 
-import java.util.List;
-
 import org.junit.Assume;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import java.util.List;
+
+import static com.exacttarget.fuelsdk.ETResult.Status.OK;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import static com.exacttarget.fuelsdk.ETResult.Status.OK;
-
+@Ignore
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ETDataExtensionTest {
     private static ETClient client = null;

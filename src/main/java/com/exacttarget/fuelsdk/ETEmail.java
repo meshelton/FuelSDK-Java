@@ -34,12 +34,13 @@
 
 package com.exacttarget.fuelsdk;
 
-import java.util.Date;
-
 import com.exacttarget.fuelsdk.annotations.ExternalName;
 import com.exacttarget.fuelsdk.annotations.InternalName;
 import com.exacttarget.fuelsdk.annotations.SoapObject;
 import com.exacttarget.fuelsdk.internal.Email;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -165,6 +166,12 @@ public class ETEmail extends ETSoapObject {
     @ExternalName("type")
     @InternalName("emailType")
     private Type type = null;
+    @ExternalName("hasDynamicSubjectLine")
+    @InternalName("hasDynamicSubjectLine")
+    private Boolean hasDynamicSubjectLine;
+    @ExternalName("contentAreas")
+    @InternalName("contentAreas")
+    private List<ETContentArea> contentAreas;
 
     public ETEmail() {}
 
@@ -285,6 +292,26 @@ public class ETEmail extends ETSoapObject {
         return getFolderId();
     }
 
+    public Boolean getHasDynamicSubjectLine()
+    {
+        return hasDynamicSubjectLine;
+    }
+
+    public void setHasDynamicSubjectLine(final Boolean hasDynamicSubjectLine)
+    {
+        this.hasDynamicSubjectLine = hasDynamicSubjectLine;
+    }
+
+    public List<ETContentArea> getContentAreas()
+    {
+        return contentAreas;
+    }
+
+    public void setContentAreas(final List<ETContentArea> contentAreas)
+    {
+        this.contentAreas = contentAreas;
+    }
+
     /**
      * @deprecated
      * Use <code>setFolderId()</code>.
@@ -296,7 +323,9 @@ public class ETEmail extends ETSoapObject {
 
     public enum Type {
         HTML("HTML"),
-        TEXT("Text");
+        TEXT("Text"),
+        Normal("Normal");
+
         private final String value;
 
         Type(String value) {

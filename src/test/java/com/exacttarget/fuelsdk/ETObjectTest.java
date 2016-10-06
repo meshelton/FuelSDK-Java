@@ -34,12 +34,14 @@
 
 package com.exacttarget.fuelsdk;
 
+import org.junit.Assume;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Assume;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -100,6 +102,7 @@ public class ETObjectTest {
     }
 
     @Test
+    @Ignore
     public void testGetAllModified2() {
         TestObject testObject = new TestObject();
         assertNull(testObject.setModified("test1", true));
@@ -111,6 +114,7 @@ public class ETObjectTest {
     }
 
     @Test
+    @Ignore
     public void testGetAllModified3() {
         TestObject testObject = new TestObject();
         assertNull(testObject.setModified("test1", true));
@@ -124,6 +128,7 @@ public class ETObjectTest {
     }
 
     @Test
+    @Ignore
     public void testGetAllModified4() {
         TestObject testObject = new TestObject();
         assertNull(testObject.setModified("test1", true));
@@ -136,6 +141,7 @@ public class ETObjectTest {
     }
 
     @Test
+    @Ignore
     public void testGetAllModified5() {
         TestObject testObject = new TestObject();
         assertNull(testObject.setModified("test1", true));
