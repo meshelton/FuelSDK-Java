@@ -34,12 +34,11 @@
 
 package com.exacttarget.fuelsdk;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.exacttarget.fuelsdk.annotations.PrettyPrint;
 import org.apache.log4j.Logger;
 
-import com.exacttarget.fuelsdk.annotations.PrettyPrint;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ETResponse<T extends ETApiObject> extends ETObject {
     private static Logger logger = Logger.getLogger(ETResponse.class);
@@ -114,7 +113,7 @@ public class ETResponse<T extends ETApiObject> extends ETObject {
     }
 
     public T getObject() {
-        return getResult().getObject();
+        return getResult() == null ? null : getResult().getObject();
     }
 
     public List<T> getObjects() {

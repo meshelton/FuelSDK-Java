@@ -59,7 +59,9 @@ public class ETClientTest {
                 .getResource("/fuelsdk-test.properties"));
     }
 
+    @Ignore
     @Test
+    //for manual usage
     public void testSmartlingFlow() throws ETSdkException
     {
         ETClient client = new ETClient();
@@ -76,7 +78,8 @@ public class ETClientTest {
 
         String externalKey = UUID.randomUUID().toString();
         email.setKey(externalKey);
-        ETResponse<ETEmail> response =  client.update(email);
+        email.setId(null);
+        ETResponse<ETEmail> response =  client.create(email);
         if (response.getStatus() != ETResult.Status.OK) {
             System.out.println(email);
         }

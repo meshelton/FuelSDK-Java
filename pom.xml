@@ -90,9 +90,13 @@
   </dependencies>
   <distributionManagement>
     <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <id>snapshots</id>
+      <url>https://artifactory.smartling.net/artifactory/local-snapshots</url>
     </snapshotRepository>
+    <repository>
+      <id>release</id>
+      <url>https://artifactory.smartling.net/artifactory/local-releases</url>
+    </repository>
   </distributionManagement>
   <build>
     <plugins>
