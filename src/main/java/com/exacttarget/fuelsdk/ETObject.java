@@ -34,13 +34,14 @@
 
 package com.exacttarget.fuelsdk;
 
+import com.exacttarget.fuelsdk.annotations.ExternalName;
+import com.exacttarget.fuelsdk.annotations.PrettyPrint;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
-
-import com.exacttarget.fuelsdk.annotations.ExternalName;
-import com.exacttarget.fuelsdk.annotations.PrettyPrint;
 
 /**
  * An <code>ETObject</code> represents an object in the Java
@@ -48,9 +49,13 @@ import com.exacttarget.fuelsdk.annotations.PrettyPrint;
  */
 
 public abstract class ETObject {
+    @JsonIgnore
     private ETClient client = null;
+    @JsonIgnore
     private Boolean toStringMultiLine = true;
+    @JsonIgnore
     private Integer toStringMultiLineIndentAmount = 4;
+    @JsonIgnore
     private Boolean toStringSpaceAroundEquals = toStringMultiLine;
 
     private static int currentIndentLevel = 0;
