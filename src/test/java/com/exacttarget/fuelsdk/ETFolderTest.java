@@ -34,14 +34,15 @@
 
 package com.exacttarget.fuelsdk;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assume;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -65,8 +66,8 @@ public class ETFolderTest {
     public void _01_TestRetrieveAll()
         throws ETSdkException
     {
-        ETResponse<ETFolder> response = client.retrieve(ETFolder.class);
-        for (ETFolder folder : response.getObjects()) {
+        List<ETFolder> response = client.retrieveObjects(ETFolder.class, "contentType=email");
+        for (ETFolder folder : response) {
             assertNotNull(folder.getId());
             assertNotNull(folder.getKey());
             assertNotNull(folder.getName());

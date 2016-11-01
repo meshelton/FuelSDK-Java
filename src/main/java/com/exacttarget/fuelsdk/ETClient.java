@@ -34,6 +34,15 @@
 
 package com.exacttarget.fuelsdk;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.apache.log4j.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
@@ -42,20 +51,13 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import org.apache.log4j.Logger;
-
 /**
  * <code>ETClient</code> is the central object in the Java
  * client library.
  */
 
 public class ETClient {
+    public static final int HTTP_OK = 200;
     private static Logger logger = Logger.getLogger(ETClient.class);
 
     private static final String DEFAULT_PROPERTIES_FILE_NAME =
@@ -789,5 +791,24 @@ public class ETClient {
         }
 
         return response;
+    }
+
+    public String getContextForEmail(String id) throws ETSdkException
+    {
+        final ETRestConnection.Response response = restConnection.post("/guide/v1/emails/" + id + "/preview?kind=html", "");
+        if (response.getResponseCode() != HTTP_OK)
+        {
+            throw new ETSdkException("Can't get context " + response.getResponseMessage() + ' ' + response.getResponsePayload());
+        }
+        String json = response.getResponsePayload();
+        try
+        {
+            JSONObject jsonObj = new JSONObject(json);
+            return jsonObj.getJSONObject("message").getJSONArray("views").getJSONObject(0).getString("content");
+        }
+        catch (JSONException e)
+        {
+            throw new ETSdkException("Can't get context, pasing json failed", e);
+        }
     }
 }

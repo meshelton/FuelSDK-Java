@@ -94,6 +94,20 @@ public class ETClientTest {
     }
 
     @Test
+    public void testGettingContext() throws ETSdkException
+    {
+        ETClient client = new ETClient();
+        assertNotNull(client.getContextForEmail("5627"));
+    }
+
+    @Test(expected=ETSdkException.class)
+    public void testGettingContextWithException() throws ETSdkException
+    {
+        ETClient client = new ETClient();
+        assertNotNull(client.getContextForEmail("5628"));
+    }
+
+    @Test
     @Ignore
     @SuppressWarnings("deprecation")
     public void testBackwardCompatibility1()
