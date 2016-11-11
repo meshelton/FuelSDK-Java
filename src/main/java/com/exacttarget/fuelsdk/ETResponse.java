@@ -106,7 +106,7 @@ public class ETResponse<T extends ETApiObject> extends ETObject {
     }
 
     public String getErrorMessage() {
-        if (individualResults != null && individualResults.get(0) != null) {
+        if (individualResults != null && !individualResults.isEmpty() && individualResults.get(0) != null) {
             return individualResults.get(0).getResponseMessage();
         }
         return null;
