@@ -97,14 +97,14 @@ public class ETClientTest {
     public void testGettingContext() throws ETSdkException
     {
         ETClient client = new ETClient();
-        assertNotNull(client.getContextForEmail("5627"));
+        assertNotNull(client.getPreviewForEmail("5627"));
     }
 
     @Test(expected=ETSdkException.class)
     public void testGettingContextWithException() throws ETSdkException
     {
         ETClient client = new ETClient();
-        assertNotNull(client.getContextForEmail("5628"));
+        assertNotNull(client.getPreviewForEmail("5628"));
     }
 
     @Test

@@ -793,12 +793,12 @@ public class ETClient {
         return response;
     }
 
-    public String getContextForEmail(String id) throws ETSdkException
+    public String getPreviewForEmail(String id) throws ETSdkException
     {
         final ETRestConnection.Response response = restConnection.post("/guide/v1/emails/" + id + "/preview?kind=html", "");
         if (response.getResponseCode() != HTTP_OK)
         {
-            throw new ETSdkException("Can't get context " + response.getResponseMessage() + ' ' + response.getResponsePayload());
+            throw new ETSdkException("Can't get preview " + response.getResponseMessage() + ' ' + response.getResponsePayload());
         }
         String json = response.getResponsePayload();
         try
@@ -808,7 +808,7 @@ public class ETClient {
         }
         catch (JSONException e)
         {
-            throw new ETSdkException("Can't get context, pasing json failed", e);
+            throw new ETSdkException("Can't get preview, parsing json failed", e);
         }
     }
 }
