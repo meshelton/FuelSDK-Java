@@ -321,6 +321,25 @@ public class ETEmail extends ETSoapObject {
         setFolderId(categoryId);
     }
 
+    @Override public String toString()
+    {
+        return "ETEmail{" +
+                "id='" + id + '\'' +
+                ", key='" + key + '\'' +
+                ", name='" + name + '\'' +
+                ", createdDate=" + createdDate +
+                ", modifiedDate=" + modifiedDate +
+                ", folderId=" + folderId +
+                ", subject='" + subject + '\'' +
+                ", htmlBody='" + htmlBody + '\'' +
+                ", textBody='" + textBody + '\'' +
+                ", isHtmlPaste=" + isHtmlPaste +
+                ", type=" + type +
+                ", hasDynamicSubjectLine=" + hasDynamicSubjectLine +
+                ", contentAreas=" + contentAreas +
+                '}';
+    }
+
     public enum Type {
         HTML("HTML"),
         TEXT("Text"),
