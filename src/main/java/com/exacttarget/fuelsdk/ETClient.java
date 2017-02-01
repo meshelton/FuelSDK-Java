@@ -120,6 +120,8 @@ public class ETClient {
         clientId = configuration.get("clientId");
         clientSecret = configuration.get("clientSecret");
 
+        refreshToken = configuration.get("refreshToken");
+
         username = configuration.get("username");
         password = configuration.get("password");
 

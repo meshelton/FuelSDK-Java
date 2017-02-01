@@ -34,14 +34,14 @@
 
 package com.exacttarget.fuelsdk;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-
-import org.apache.log4j.Logger;
 
 public class ETConfiguration {
     private static Logger logger = Logger.getLogger(ETConfiguration.class);
@@ -204,5 +204,9 @@ public class ETConfiguration {
     @Deprecated
     public void setSoapEndpoint(String soapEndpoint) {
         set("soapEndpoint", soapEndpoint);
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        set("refreshToken", refreshToken);
     }
 }
