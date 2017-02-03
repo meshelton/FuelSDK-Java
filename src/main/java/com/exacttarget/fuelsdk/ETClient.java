@@ -146,7 +146,7 @@ public class ETClient {
 
         if (clientId != null && clientSecret != null) {
             authConnection = new ETRestConnection(this, authEndpoint, true);
-            requestToken();
+            requestToken(refreshToken);
             restConnection = new ETRestConnection(this, endpoint);
             if (soapEndpoint == null) {
                 //
@@ -267,7 +267,7 @@ public class ETClient {
         jsonObject.addProperty("clientId", clientId);
         jsonObject.addProperty("clientSecret", clientSecret);
         jsonObject.addProperty("accessType", (configuration.get("accessType") != null ? configuration.get("accessType") :"online"));
-        if (configuration.get("accessType") != null && configuration.get("accessType").equals("offline") && refreshToken != null){
+        if (refreshToken != null){
         	jsonObject.addProperty("refreshToken", refreshToken);
         }
 
