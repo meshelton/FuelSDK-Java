@@ -259,15 +259,15 @@ public class ETClient {
 
         //
         // Construct the JSON payload. Set accessType to offline so
-        // we get a refresh token. Pass in current refresh token if
-        // we have one:
+        // we get a refresh . Pass in current refresh token if
+        // we have one:token
         //
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("clientId", clientId);
         jsonObject.addProperty("clientSecret", clientSecret);
-        jsonObject.addProperty("accessType", (configuration.get("accessType") != null ? configuration.get("accessType") :"online"));
         if (refreshToken != null){
+            jsonObject.addProperty("accessType", "offline");
         	jsonObject.addProperty("refreshToken", refreshToken);
         }
 
@@ -812,5 +812,10 @@ public class ETClient {
         {
             throw new ETSdkException("Can't get preview, parsing json failed", e);
         }
+    }
+
+    public String getRefreshToken()
+    {
+        return refreshToken;
     }
 }
