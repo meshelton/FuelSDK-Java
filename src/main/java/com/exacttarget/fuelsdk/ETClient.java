@@ -250,6 +250,10 @@ public class ETClient {
     public synchronized String requestToken(String refreshToken)
         throws ETSdkException
     {
+        if (accessToken != null)
+        {
+            return accessToken;
+        }
         if (clientId == null || clientSecret == null) {
             // no-op
             return null;
@@ -266,10 +270,6 @@ public class ETClient {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("clientId", clientId);
         jsonObject.addProperty("clientSecret", clientSecret);
-        if (refreshToken != null){
-            jsonObject.addProperty("accessType", "offline");
-        	jsonObject.addProperty("refreshToken", refreshToken);
-        }
 
         String requestPayload = gson.toJson(jsonObject);
 
@@ -323,38 +323,6 @@ public class ETClient {
         tokenExpirationTime = System.currentTimeMillis() + (expiresIn * 1000);
 
         logger.debug("access token expires at " + new Date(tokenExpirationTime));
-
-        return accessToken;
-    }
-
-    public synchronized String refreshToken()
-        throws ETSdkException
-    {
-        if (tokenExpirationTime > 0) {
-            logger.debug("access token expires at " + new Date(tokenExpirationTime));
-
-            //
-            // If the current token expires more than five
-            // minutes from now, we don't need to refresh
-            // (tokenExpirationTime and System.currentTimeMills()
-            // are in milliseconds so we multiply by 1000):
-            //
-
-            if (tokenExpirationTime - System.currentTimeMillis() > 5*60*1000) {
-                logger.debug("not refreshing access token");
-                return accessToken;
-            }
-
-            logger.debug("refreshing access token...");
-
-            if (refreshToken == null) {
-                throw new ETSdkException("refreshToken == null");
-            }
-        }
-
-        requestToken(refreshToken);
-
-        soapConnection.setAccessToken(accessToken);
 
         return accessToken;
     }

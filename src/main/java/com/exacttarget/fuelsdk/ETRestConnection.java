@@ -34,6 +34,10 @@
 
 package com.exacttarget.fuelsdk;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import org.apache.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,11 +47,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonParser;
-
-import org.apache.log4j.Logger;
 
 /**
  * An <code>ETRestConnection</code> represents an active
@@ -225,7 +224,7 @@ public class ETRestConnection {
         }
 
         if (!isAuthConnection) {
-            connection.setRequestProperty("Authorization", "Bearer " + client.refreshToken());
+            connection.setRequestProperty("Authorization", "Bearer " + client.getAccessToken());
         }
 
         if (logger.isDebugEnabled()) {

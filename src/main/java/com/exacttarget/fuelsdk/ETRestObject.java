@@ -34,26 +34,25 @@
 
 package com.exacttarget.fuelsdk;
 
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.net.URLEncoder;
-import java.util.List;
-
+import com.exacttarget.fuelsdk.ETRestConnection.Method;
+import com.exacttarget.fuelsdk.ETRestConnection.Response;
+import com.exacttarget.fuelsdk.annotations.RestObject;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.annotations.SerializedName;
-
 import org.apache.log4j.Logger;
 
-import com.exacttarget.fuelsdk.ETRestConnection.Method;
+import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
+import java.net.URLEncoder;
+import java.util.List;
 
-import static com.exacttarget.fuelsdk.ETRestConnection.Method.*;
-
-import com.exacttarget.fuelsdk.ETRestConnection.Response;
-import com.exacttarget.fuelsdk.annotations.RestObject;
+import static com.exacttarget.fuelsdk.ETRestConnection.Method.DELETE;
+import static com.exacttarget.fuelsdk.ETRestConnection.Method.PATCH;
+import static com.exacttarget.fuelsdk.ETRestConnection.Method.POST;
 
 /**
  * An <code>ETRestObject</code> represents an object
@@ -73,12 +72,6 @@ public abstract class ETRestObject extends ETApiObject {
         ETResponse<T> response = new ETResponse<T>();
 
         ETRestConnection connection = client.getRestConnection();
-
-        //
-        // Automatically refresh the token if necessary:
-        //
-
-        client.refreshToken();
 
         //
         // Read call details from the RestObject annotation:
@@ -308,12 +301,6 @@ public abstract class ETRestObject extends ETApiObject {
         }
 
         ETRestConnection connection = client.getRestConnection();
-
-        //
-        // Automatically refresh the token if necessary:
-        //
-
-        client.refreshToken();
 
         //
         // Read call details from the RestObject annotation:

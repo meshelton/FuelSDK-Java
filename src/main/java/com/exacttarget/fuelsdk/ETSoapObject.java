@@ -34,25 +34,6 @@
 
 package com.exacttarget.fuelsdk;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.BeanUtilsBean;
-import org.apache.commons.beanutils.ConversionException;
-import org.apache.commons.beanutils.ConvertUtilsBean;
-import org.apache.commons.beanutils.Converter;
-import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.log4j.Logger;
-
 import com.exacttarget.fuelsdk.annotations.ExternalName;
 import com.exacttarget.fuelsdk.annotations.InternalName;
 import com.exacttarget.fuelsdk.annotations.InternalProperty;
@@ -74,9 +55,9 @@ import com.exacttarget.fuelsdk.internal.DeleteOptions;
 import com.exacttarget.fuelsdk.internal.DeleteRequest;
 import com.exacttarget.fuelsdk.internal.DeleteResponse;
 import com.exacttarget.fuelsdk.internal.DeleteResult;
-import com.exacttarget.fuelsdk.internal.FilterPart;
 import com.exacttarget.fuelsdk.internal.Email;
 import com.exacttarget.fuelsdk.internal.EmailType;
+import com.exacttarget.fuelsdk.internal.FilterPart;
 import com.exacttarget.fuelsdk.internal.ListClassificationEnum;
 import com.exacttarget.fuelsdk.internal.ListTypeEnum;
 import com.exacttarget.fuelsdk.internal.LogicalOperators;
@@ -95,6 +76,23 @@ import com.exacttarget.fuelsdk.internal.UpdateOptions;
 import com.exacttarget.fuelsdk.internal.UpdateRequest;
 import com.exacttarget.fuelsdk.internal.UpdateResponse;
 import com.exacttarget.fuelsdk.internal.UpdateResult;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
+import org.apache.commons.beanutils.ConversionException;
+import org.apache.commons.beanutils.ConvertUtilsBean;
+import org.apache.commons.beanutils.Converter;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.log4j.Logger;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * An <code>ETSoapObject</code> represents an object
@@ -171,12 +169,6 @@ public abstract class ETSoapObject extends ETApiObject {
         //
 
         ETSoapConnection connection = client.getSoapConnection();
-
-        //
-        // Automatically refresh the token if necessary:
-        //
-
-        client.refreshToken();
 
         //
         // Read internal type from the SoapObject annotation:
@@ -376,12 +368,6 @@ public abstract class ETSoapObject extends ETApiObject {
         ETSoapConnection connection = client.getSoapConnection();
 
         //
-        // Automatically refresh the token if necessary:
-        //
-
-        client.refreshToken();
-
-        //
         // Perform the SOAP create:
         //
 
@@ -495,12 +481,6 @@ public abstract class ETSoapObject extends ETApiObject {
         //
 
         ETSoapConnection connection = client.getSoapConnection();
-
-        //
-        // Automatically refresh the token if necessary:
-        //
-
-        client.refreshToken();
 
         //
         // Perform the SOAP update:
@@ -634,12 +614,6 @@ public abstract class ETSoapObject extends ETApiObject {
         //
 
         ETSoapConnection connection = client.getSoapConnection();
-
-        //
-        // Automatically refresh the token if necessary:
-        //
-
-        client.refreshToken();
 
         //
         // Perform the SOAP delete:

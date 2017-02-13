@@ -34,13 +34,6 @@
 
 package com.exacttarget.fuelsdk;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import org.apache.log4j.Logger;
-
 import com.exacttarget.fuelsdk.annotations.ExternalName;
 import com.exacttarget.fuelsdk.annotations.InternalName;
 import com.exacttarget.fuelsdk.annotations.InternalProperty;
@@ -54,6 +47,12 @@ import com.exacttarget.fuelsdk.internal.Soap;
 import com.exacttarget.fuelsdk.internal.Subscriber;
 import com.exacttarget.fuelsdk.internal.TriggeredSend;
 import com.exacttarget.fuelsdk.internal.TriggeredSendDefinition;
+import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 /**
  * An <code>ETTriggeredEmail</code> represents a Triggered Email
@@ -311,12 +310,6 @@ public class ETTriggeredEmail extends ETSoapObject {
         //
 
         ETSoapConnection connection = getClient().getSoapConnection();
-
-        //
-        // Automatically refresh the token if necessary:
-        //
-
-        getClient().refreshToken();
 
         //
         // Perform the SOAP create:

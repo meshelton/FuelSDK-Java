@@ -34,25 +34,23 @@
 
 package com.exacttarget.fuelsdk;
 
+import com.exacttarget.fuelsdk.ETDataExtensionColumn.Type;
+import com.exacttarget.fuelsdk.annotations.ExternalName;
+import com.exacttarget.fuelsdk.annotations.InternalName;
+import com.exacttarget.fuelsdk.annotations.RestObject;
+import com.exacttarget.fuelsdk.annotations.SoapObject;
+import com.exacttarget.fuelsdk.internal.APIObject;
+import com.exacttarget.fuelsdk.internal.APIProperty;
+import com.exacttarget.fuelsdk.internal.DataExtension;
+import com.exacttarget.fuelsdk.internal.DataExtensionObject;
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-
-import org.apache.log4j.Logger;
-
-import com.exacttarget.fuelsdk.ETDataExtensionColumn.Type;
-import com.exacttarget.fuelsdk.annotations.ExternalName;
-import com.exacttarget.fuelsdk.annotations.InternalName;
-import com.exacttarget.fuelsdk.annotations.RestObject;
-import com.exacttarget.fuelsdk.annotations.SoapObject;
-import com.exacttarget.fuelsdk.ETDataExtensionColumn.Type;
-import com.exacttarget.fuelsdk.internal.APIObject;
-import com.exacttarget.fuelsdk.internal.APIProperty;
-import com.exacttarget.fuelsdk.internal.DataExtension;
-import com.exacttarget.fuelsdk.internal.DataExtensionObject;
 
 /**
  * An <code>ETDataExtension</code> object represents a data extension
@@ -736,11 +734,6 @@ public class ETDataExtension extends ETSoapObject {
                                                               String key)
         throws ETSdkException
     {
-        //
-        // Automatically refresh the token if necessary:
-        //
-
-        client.refreshToken();
 
         //
         // Retrieve all column objects with the specified key:
