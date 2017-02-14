@@ -120,7 +120,7 @@ public class ETClient {
         clientId = configuration.get("clientId");
         clientSecret = configuration.get("clientSecret");
 
-        refreshToken = configuration.get("refreshToken");
+        accessToken = configuration.get("accessToken");
 
         username = configuration.get("username");
         password = configuration.get("password");
@@ -146,7 +146,7 @@ public class ETClient {
 
         if (clientId != null && clientSecret != null) {
             authConnection = new ETRestConnection(this, authEndpoint, true);
-            requestToken(refreshToken);
+            requestToken();
             restConnection = new ETRestConnection(this, endpoint);
             if (soapEndpoint == null) {
                 //
@@ -242,12 +242,6 @@ public class ETClient {
     }
 
     public synchronized String requestToken()
-        throws ETSdkException
-    {
-        return requestToken(null);
-    }
-
-    public synchronized String requestToken(String refreshToken)
         throws ETSdkException
     {
         if (accessToken != null)
@@ -782,8 +776,4 @@ public class ETClient {
         }
     }
 
-    public String getRefreshToken()
-    {
-        return refreshToken;
-    }
 }
