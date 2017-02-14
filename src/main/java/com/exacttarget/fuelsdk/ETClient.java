@@ -154,6 +154,10 @@ public class ETClient {
                 //
 
                 ETRestConnection.Response response = restConnection.get(PATH_ENDPOINTS_SOAP);
+                if(response.getResponseCode() != HttpURLConnection.HTTP_OK)
+                {
+                    throw new ETSdkException("error resolving soap endpoint (" + response.getResponseCode() + " " + response.getResponseMessage() + ")");
+                }
                 String responsePayload = response.getResponsePayload();
                 JsonParser jsonParser = new JsonParser();
                 JsonObject jsonObject = jsonParser.parse(responsePayload).getAsJsonObject();
