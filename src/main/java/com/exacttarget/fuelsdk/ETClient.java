@@ -761,7 +761,7 @@ public class ETClient {
         return response;
     }
 
-    public String getPreviewForEmail(String id) throws ETSdkException
+    public ETPreview getPreviewForEmail(String id) throws ETSdkException
     {
         final ETRestConnection.Response response = restConnection.post("/guide/v1/emails/" + id + "/preview?kind=html", "");
         if (response.getResponseCode() != HTTP_OK)
@@ -772,7 +772,8 @@ public class ETClient {
         try
         {
             JSONObject jsonObj = new JSONObject(json);
-            return jsonObj.getJSONObject("message").getJSONArray("views").getJSONObject(0).getString("content");
+            final String htmlContent = jsonObj.getJSONObject("message").getJSONArray("views").getJSONObject(0).getString("content");
+            return new ETPreview(htmlContent, endpoint + "/guide/v1/emails/" + id + "/preview?kind=html");
         }
         catch (JSONException e)
         {
