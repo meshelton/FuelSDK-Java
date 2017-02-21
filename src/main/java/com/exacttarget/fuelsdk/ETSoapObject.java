@@ -839,7 +839,7 @@ public abstract class ETSoapObject extends ETApiObject {
     public class EnumConverter implements Converter {
         @SuppressWarnings({ "rawtypes", "unchecked" })
         public Object convert(Class type, Object value) {
-            return Enum.valueOf(type, value.toString());
+            return Enum.valueOf(type, value.toString().replaceAll(" ", "_"));
         }
     }
 

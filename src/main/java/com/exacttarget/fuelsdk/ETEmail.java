@@ -343,6 +343,7 @@ public class ETEmail extends ETSoapObject {
     public enum Type {
         HTML("HTML"),
         TEXT("Text"),
+        Text_Only("Text Only"),
         Normal("Normal");
 
         private final String value;
