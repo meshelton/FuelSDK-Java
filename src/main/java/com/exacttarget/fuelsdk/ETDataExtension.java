@@ -157,6 +157,11 @@ public class ETDataExtension extends ETSoapObject {
         return columns;
     }
 
+    public void setColumns(final List<ETDataExtensionColumn> columns)
+    {
+        this.columns = columns;
+    }
+
     public ETDataExtensionColumn getColumn(String name) {
         for (ETDataExtensionColumn column : columns) {
             if (column.getName().equals(name.toLowerCase())) {
