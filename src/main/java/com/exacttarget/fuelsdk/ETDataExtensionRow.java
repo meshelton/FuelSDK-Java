@@ -34,14 +34,15 @@
 
 package com.exacttarget.fuelsdk;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import com.exacttarget.fuelsdk.annotations.ExternalName;
 import com.exacttarget.fuelsdk.annotations.InternalName;
 import com.exacttarget.fuelsdk.annotations.SoapObject;
 import com.exacttarget.fuelsdk.internal.DataExtensionObject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * An <code>ETDataExtensionRow</code> object represents a
@@ -52,6 +53,7 @@ import com.exacttarget.fuelsdk.internal.DataExtensionObject;
 public class ETDataExtensionRow extends ETSoapObject {
     @ExternalName("dataExtensionKey")
     @InternalName("customerKey")
+    @JsonIgnore
     private String dataExtensionKey = null;
     @ExternalName("columns")
     @InternalName("properties")
@@ -93,6 +95,7 @@ public class ETDataExtensionRow extends ETSoapObject {
         columns.put(name.toLowerCase(), value);
     }
 
+    @JsonIgnore
     public Set<String> getColumnNames() {
         return columns.keySet();
     }
