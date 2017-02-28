@@ -157,7 +157,7 @@ public class ETDataExtension extends ETSoapObject {
         return columns;
     }
 
-    public void setColumns(final List<ETDataExtensionColumn> columns)
+    public void columnsForUpdate(final List<ETDataExtensionColumn> columns)
     {
         this.columns = columns;
     }
